@@ -1,16 +1,9 @@
 # react-quick-sns
 ## `Full-Stack Project : React.js + Node.js + MySQL + AWS`
 🚧 80% Complete... by MySelf <br />
-現在、サーバサイドレンダリング作業はほとんど終わっています。<br />
-まだアップロードはしていません。 サーバサイドレンダリングと配布のテストまで終わったら、アップロードする予定です。<br /><br />
 (Requirement analysis -> Design -> Coding 🏃‍♂️ -> Test -> Maintenance) <br /><br />
 📷 🤔 Unlike the name 'quick', this project is quite structurally sound.
 
-### `フルスタック開発に挑戦しながら感じた感想`
-通常、開発過程はフロントエンド、バックエンドなどに分けられ、自分のパートに集中できるようにします。<br />
-フルスタック開発を一人でするので、集中しにくいです。<br />
-しかし、開発全体を一人でこなすことでプロセス全体が理解できるようになっています。<br />
-最高になるためには、難しい道は避けられません。🤣
 
 ## Goal
 ### `React.js`
