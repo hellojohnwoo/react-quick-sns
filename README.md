@@ -67,6 +67,9 @@ When processing images or videos on the back end, excessive load is applied or m
 ### `Post with single image`
 ![post_img](https://user-images.githubusercontent.com/49154920/86316779-9fb0b480-bc68-11ea-927b-48ddc28b997f.gif)
 
+### `enlarge image`
+![image_enlarge](https://user-images.githubusercontent.com/49154920/86527412-76e32600-bed9-11ea-97f8-89a5080ed80d.gif)
+
 ### `Post with multiple images & Check a content`
 ![post_double_img](https://user-images.githubusercontent.com/49154920/86317649-e4d5e600-bc6a-11ea-8d53-7a5faa40b468.gif)
 
