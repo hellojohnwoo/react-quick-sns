@@ -4,6 +4,8 @@
 (Requirement analysis -> Design -> Coding 🏃‍♂️ -> Test -> Maintenance) <br /><br />
 📷 🤔 Unlike the name 'quick', this project is quite structurally sound.
 
+### The basic social networking features in the big picture have been created (CRUD APP). 
+### However, what remains from now on is the addition of design elements and additional features.
 
 ## Goal
 ### `React.js`
