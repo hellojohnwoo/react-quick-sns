@@ -1,20 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import 'antd/dist/antd.css'
 import Head from 'next/head';
+import PropTypes from 'prop-types';
+import 'antd/dist/antd.css';
 // import withReduxSaga from 'next-redux-saga';
 
 import wrapper from '../store/configureStore';
 
 
-const Renotter = ({ Component }) => (
-    <>
-        <Head>
-            <title>Renotter</title>
-        </Head>
-        <Component />
-    </>
-);
+const Renotter = ({ Component }) => {
+    return (
+        <>
+            <Head>
+                <title>Renotter</title>
+            </Head>
+            <Component/>
+        </>
+    );
+};
 
 Renotter.propTypes = {
   Component: PropTypes.elementType.isRequired,

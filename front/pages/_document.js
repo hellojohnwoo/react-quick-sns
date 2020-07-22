@@ -1,14 +1,13 @@
 import React from 'react';
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
-// Server-Side-Rendering for CSS
 export default class MyDocument extends Document {
-    static async getInitialProps(ctx) {     // getInitialProps; Rumors are circulating in the English language community that it will soon disappear.
+    static async getInitalProps(ctx) {
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
-        try {   // SSR
+        try {
             ctx.renderPage = () => originalRenderPage({
                 enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
             });
@@ -33,11 +32,11 @@ export default class MyDocument extends Document {
         return (
             <Html>
                 <Head />
-                <body>
-                    <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019" />
-                    <Main />
-                    <NextScript />
-                </body>
+                    <body>
+                        <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2015%2Ces2016%2Ces2017%2Ces2018%2Ces2019" />
+                        <Main />
+                        <NextScript />
+                    </body>
             </Html>
         );
     }

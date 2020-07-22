@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         db.Post.belongsTo(db.User);             // The person who wrote the post
         db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
         db.Post.hasMany(db.Comment);
-        db.Post.hasMany(db.Image);
+        db.Post.hasMany(db.Image);                      // +Option: db.Post.hasMany(db.Image, {onDelete: 'CASCADE', hooks: true});
         db.Post.belongsToMany(db.User, { through: 'Like', as: 'Likers' });  // The person who clicked like on the post // post.getLikers
         db.Post.belongsTo(db.Post, { as: 'Retweet' });  // post.addRetweet
     };

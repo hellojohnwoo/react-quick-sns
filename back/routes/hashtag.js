@@ -1,36 +1,32 @@
 const express = require('express');
 const { Op } = require('sequelize');
 
-const { Post, Hashtag, Image, Comment, User } = require('../models');
+const { Post, Hashtag, Image, User } = require('../models');
 
 
 const router = express.Router();
 
-router.get('/:hashtag', async (req, res, next) => {                             // GET /hashtag/blahblah
+router.get('/:tag', async (req, res, next) => {                             // GET /hashtag/blahblah
     try {
         const where = {};
         if (parseInt(req.query.lastId, 10)) {                     // When not first initialize time, Execute this part
-            where.id = { [Op.lt]: parseInt(req.q.lastId, 10) }    // Using Op!, Do not using $lt. that include the SQL Injection Attact
+            where.id = { [Op.lt]: parseInt(req.query.lastId, 10) }    // Using Op!, Do not using $lt. that include the SQL Injection Attact
         }                                                               // Bring ten smaller than the last number. // ex) 21, (20, 19, ..., 11,) 10, 9, ..., 2, 1
 
         const posts = await Post.findAll({
             where,
             limit: 10,
-            order: [['createdAt', 'DESC']],
             include: [{
                 model: Hashtag,
-                where: { name: decodeURIComponent(req.params.hashtag) },
+                where: { name: decodeURIComponent(req.params.tag) },
+            }, {
+                model: User,
+                attributes: ['id', 'nickname'],
             }, {
                 model: Image,
             }, {
-                model: Comment,
-                include: [{
-                    model: User,
-                    attributes: ['id', 'nickname'],
-                    order: [['createdAt', 'DESC']],
-                }],
-            }, {
-                model: User,                        // User who clicked Like
+                model: User,
+                through: 'Like',
                 as: 'Likers',
                 attributes: ['id'],
             }, {
@@ -41,11 +37,11 @@ router.get('/:hashtag', async (req, res, next) => {                             
                     attributes: ['id', 'nickname'],
                 }, {
                     model: Image,
-                }]
+                }],
             }],
         });
-        // console.log(posts);                         // record on the server side
-        res.status(200).json(posts);
+        // console.log(posts);
+        res.status(200).json(posts);                // User who clicked Like
     } catch (error) {
         console.error(error);
         next(error);

@@ -49,6 +49,7 @@ const About = () => {
     );
 };
 
+// just using BlogPage, EventPage
 export const getStaticProps = wrapper.getStaticProps(async (context) => {       // getStaticProps : serve html
     // console.log('getStaticProps');
     context.store.dispatch({

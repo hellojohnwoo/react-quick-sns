@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         collate: 'utf8_general_ci', // For other Languages
     });
     Image.associate = (db) => {
-        db.Image.belongsTo(db.Post);
+        db.Image.belongsTo(db.Post);    // +Option: db.Image.belongsTo(db.Post, {onDelete: 'CASCADE', hooks: true});
     };
     return Image;
 }

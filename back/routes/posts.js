@@ -15,7 +15,10 @@ router.get('/', async (req, res, next) => {                             // GET /
         const posts = await Post.findAll({
             where,
             limit: 10,
-            order: [['createdAt', 'DESC']],
+            order: [
+                ['createdAt', 'DESC'],
+                [Comment, 'createdAt', 'DESC'],
+            ],
             include: [{
                 model: User,
                 attributes: ['id', 'nickname'],
@@ -26,7 +29,6 @@ router.get('/', async (req, res, next) => {                             // GET /
                 include: [{
                     model: User,
                     attributes: ['id', 'nickname'],
-                    order: [['createdAt', 'DESC']],
                 }],
             }, {
                 model: User,                        // User who clicked Like

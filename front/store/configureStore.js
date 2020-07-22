@@ -14,11 +14,14 @@ const configureStore = () => {
         : composeWithDevTools(
             applyMiddleware(...middlewares),
         );
+
     const store = createStore(reducer, enhancer);
     store.sagaTask = sagaMiddleware.run(rootSaga);
     return store;
 };
 
-const wrapper = createWrapper(configureStore, { debug: process.env.NODE_ENV === 'development' });
+const wrapper = createWrapper(configureStore, {
+    debug: process.env.NODE_ENV === 'development',
+});
 
 export default wrapper;

@@ -4,11 +4,8 @@
 (Requirement analysis -> Design -> Coding 🏃‍♂️ -> Test -> Maintenance) <br /><br />
 📷 🤔 Unlike the name 'quick', this project is quite structurally sound.
 
-### `フルスタック開発に挑戦しながら感じた感想`
-通常、開発過程はフロントエンド、バックエンドなどに分けられ、自分のパートに集中できるようにします。<br />
-フルスタック開発を一人でするので、集中しにくいです。<br />
-しかし、開発全体を一人でこなすことでプロセス全体が理解できるようになっています。<br />
-最高になるためには、難しい道は避けられません。🤣
+### The basic social networking features in the big picture have been created (CRUD APP). 
+### However, what remains from now on is the addition of design elements and additional features.
 
 ## Goal
 ### `React.js`
@@ -51,9 +48,10 @@
 ### `Feature`
 1. [X] Signup
 2. [X] Login & Logout
-3. [X] Write post with images upload, Add comment
-4. [X] Like
-5. [X] Following & Follower
+3. [X] Write post with a single images & multiple images upload , Add comment
+4. [X] Like & Unlike
+5. [X] Following & Unfollowing
+6. [X] Follower & UnFollower
 6. [X] Retweet the post & Block retweet my post.
 7. [X] Blocked access to unauthorized access routes.
 
@@ -65,33 +63,41 @@ When processing images or videos on the back end, excessive load is applied or m
  
 ## Feature Preview
 
-### `Rejected Unregistered`
-![reject_login_no_signup_user_0627](https://user-images.githubusercontent.com/49154920/85920676-a3cb8380-b8b0-11ea-86f2-53ccac5b0f6d.gif)
+### `Post`
+![post1](https://user-images.githubusercontent.com/49154920/86316751-90ca0200-bc68-11ea-90f3-eb87113904ff.gif)
 
-### `SignUp`
-![sign_up_okay_0627](https://user-images.githubusercontent.com/49154920/85920593-02dcc880-b8b0-11ea-98c5-409d18ab9029.gif)
+### `Post with single image`
+![post_img](https://user-images.githubusercontent.com/49154920/86316779-9fb0b480-bc68-11ea-927b-48ddc28b997f.gif)
 
-### `LogIn`
-![login_okay_0627](https://user-images.githubusercontent.com/49154920/85920586-ff494180-b8af-11ea-98fd-9b048a817e09.gif)
+### `enlarge image`
+![image_enlarge](https://user-images.githubusercontent.com/49154920/86527412-76e32600-bed9-11ea-97f8-89a5080ed80d.gif)
 
-### `Check DB`
-![sign_up_DB_okay_0627](https://user-images.githubusercontent.com/49154920/85920589-02443200-b8b0-11ea-9de8-062208eaed7f.gif)
+### `Post with multiple images & Check a content`
+![post_double_img](https://user-images.githubusercontent.com/49154920/86317649-e4d5e600-bc6a-11ea-8d53-7a5faa40b468.gif)
 
-## Source Code Preview
-### `front/sagas/post.js`
-<img width="908" alt="f-saga-post" src="https://user-images.githubusercontent.com/49154920/86010829-e6c75b80-ba56-11ea-928e-4192aceaee84.png">
+### `enlarge multiple image`
+![image_enlarge2](https://user-images.githubusercontent.com/49154920/86527963-dabc1d80-bede-11ea-8213-522d6ea2bae0.gif)
 
-### `front/reducers/post.js`
-<img width="887" alt="f-reducer-post" src="https://user-images.githubusercontent.com/49154920/86010832-e7f88880-ba56-11ea-94c6-06bdbe12ce80.png">
+### `Like & Add Comment`
+![like_comment](https://user-images.githubusercontent.com/49154920/86316812-b6570b80-bc68-11ea-9d60-b6bb6dabc318.gif)
 
-### `back/app.js`
-<img width="635" alt="b-app" src="https://user-images.githubusercontent.com/49154920/86010840-ea5ae280-ba56-11ea-846e-12e08a3743d2.png">
+### `Block retweet my post`
+![block_own_post_retwit](https://user-images.githubusercontent.com/49154920/86317360-316cf180-bc6a-11ea-9f71-0eb14449f120.gif)
 
-### `back/models/post.js`
-<img width="757" alt="b-model-db" src="https://user-images.githubusercontent.com/49154920/86010843-ec24a600-ba56-11ea-8fc2-24d7d292d093.png">
+### `Following & Unfollowing`
+![follow_unfollow](https://user-images.githubusercontent.com/49154920/86317503-86a90300-bc6a-11ea-982e-18fe012edd8e.gif)
+
+### `Show Follower`
+![show_followers](https://user-images.githubusercontent.com/49154920/86317375-3c278680-bc6a-11ea-876f-c3d4c83b5876.gif)
 
 ### `Why I using React.js?`
 <img width="1385" alt="why-react" src="https://user-images.githubusercontent.com/49154920/86010847-ed55d300-ba56-11ea-9101-f7f2b14fc8ba.png">
+
+
+## Source Code Preview
+``👨‍💻 We are planning to upload source codes later...``
+
+
 
 ## Test Code (Unit Test & Integration Test)
 `👨‍💻 We are planning to upload testing tools and test codes later...`

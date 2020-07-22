@@ -124,6 +124,7 @@ function* loadUser(action) {
             data: result.data,
         });
     } catch (err) {
+        console.error(err);
         yield put({
             type: LOAD_USER_FAILURE,
             error: err.response.data,
@@ -199,6 +200,7 @@ function* follow(action) {
             data: result.data,
         });
     } catch (err) {
+        console.error(err);
         yield put({
             type: FOLLOW_FAILURE,
             error: err.response.data,
@@ -218,6 +220,7 @@ function* unfollow(action) {
             data: result.data,
         });
     } catch (err) {
+        console.error(err);
         yield put({
             type: UNFOLLOW_FAILURE,
             error: err.response.data,

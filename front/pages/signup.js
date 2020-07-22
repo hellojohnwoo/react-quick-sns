@@ -3,16 +3,14 @@ import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import {END} from "redux-saga";
 import Router from 'next/router';
-import axios from "axios";
-
+import { END } from "redux-saga";
 
 import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, SIGN_UP_REQUEST } from '../reducers/user';
 import wrapper from "../store/configureStore";
-
+import axios from "axios";
 
 
 const ErrorMessage = styled.div`
@@ -70,7 +68,7 @@ const Signup = () => {
         if (!term) {
             return setTermError(true);
         }
-        console.log(email, nickname, password);
+        // console.log(email, nickname, password);
         dispatch({
             type: SIGN_UP_REQUEST,
             data: { email, password, nickname },
@@ -124,7 +122,7 @@ const Signup = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     console.log('getServerSideProps start');
-    console.log(context.req.headers);
+    // console.log(context.req.headers);
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = '';
     if (context.req && cookie) {
