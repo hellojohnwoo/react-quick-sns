@@ -10,9 +10,6 @@ import {
     ADD_POST_FAILURE,
     ADD_POST_REQUEST,
     ADD_POST_SUCCESS,
-    LOAD_POSTS_FAILURE,
-    LOAD_POSTS_REQUEST,
-    LOAD_POSTS_SUCCESS,
     REMOVE_POST_FAILURE,
     REMOVE_POST_REQUEST,
     REMOVE_POST_SUCCESS,
@@ -28,14 +25,21 @@ import {
     UPLOAD_IMAGES_FAILURE,
     UPLOAD_IMAGES_REQUEST,
     UPLOAD_IMAGES_SUCCESS,
+    LOAD_POSTS_FAILURE,
+    LOAD_POSTS_REQUEST,
+    LOAD_POSTS_SUCCESS,
     LOAD_POST_FAILURE,
     LOAD_POST_REQUEST,
     LOAD_POST_SUCCESS,
-    LOAD_USER_POSTS_REQUEST,
     LOAD_HASHTAG_POSTS_REQUEST,
     LOAD_HASHTAG_POSTS_SUCCESS,
     LOAD_HASHTAG_POSTS_FAILURE,
-    LOAD_USER_POSTS_SUCCESS, LOAD_USER_POSTS_FAILURE,
+    LOAD_USER_POSTS_REQUEST,
+    LOAD_USER_POSTS_SUCCESS,
+    LOAD_USER_POSTS_FAILURE,
+    UPDATE_POST_FAILURE,
+    UPDATE_POST_REQUEST,
+    UPDATE_POST_SUCCESS,
 } from '../reducers/post';
 
 
@@ -120,7 +124,7 @@ function* unlikePost(action) {
 }
 function loadHashtagPostsAPI(data, lastId) {
     return axios.get(`/hashtag/${encodeURIComponent(data)}?lastId=${lastId || 0}`);               // 'Get' Can Data Caching, too
-}                                   // decodeURIComponent()
+}                                   // decodeURIComponent() // prevent the other char set, like a Jap, Kor loanguage
 
 function* loadHashtagPosts(action) {
     try {
@@ -182,7 +186,6 @@ function loadPostAPI(data) {
     return axios.get(`/post/${data}`);
 }
 
-
 function* loadPost(action) {
     try {
         const result = yield call(loadPostAPI, action.data);
@@ -194,7 +197,7 @@ function* loadPost(action) {
         console.error(err);
         yield put({
             type: LOAD_POST_FAILURE,
-            error: err.response.data,
+            data: err.response.data,
         });
     }
 }
@@ -223,6 +226,26 @@ function* addPost(action) {
     }
 }
 
+function updatePostAPI(data) {
+    return axios.patch(`/post/${data.PostId}`, data);
+}
+
+function* updatePost(action) {
+    try {
+        const result = yield call(updatePostAPI, action.data);
+        yield put({
+            type: UPDATE_POST_SUCCESS,
+            data: result.data,
+        });
+    } catch (err) {
+        console.error(err);
+        yield put({
+            type: UPDATE_POST_FAILURE,
+            error: err.response.data,
+        });
+    }
+}
+
 function removePostAPI(data) {
     return axios.delete(`/post/${data}`);
 }
@@ -239,7 +262,6 @@ function* removePost(action) {
             data: action.data,
         });
     } catch (err) {
-        console.error(err);
         console.error(err);
         yield put({
             type: REMOVE_POST_FAILURE,
@@ -260,7 +282,6 @@ function* addComment(action) {
             data: result.data,
         });
     } catch (err) {
-        console.error(err);
         console.error(err);
         yield put({
             type: ADD_COMMENT_FAILURE,
@@ -305,6 +326,10 @@ function* watchAddPost() {
     yield takeLatest(ADD_POST_REQUEST, addPost);
 }
 
+function* watchUpdatePost() {
+    yield takeLatest(UPDATE_POST_REQUEST, updatePost);
+}
+
 function* watchRemovePost() {
     yield takeLatest(REMOVE_POST_REQUEST, removePost);
 }
@@ -324,6 +349,7 @@ export default function* postSaga() {
         fork(watchLoadUserPosts),
         fork(watchLoadPosts),
         fork(watchLoadPost),
+        fork(watchUpdatePost),
         fork(watchRemovePost),
         fork(watchAddComment),
     ]);

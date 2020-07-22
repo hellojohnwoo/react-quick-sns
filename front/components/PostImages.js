@@ -5,7 +5,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import ImagesZoom from './ImagesZoom';
 
 
-
 const PostImages = ({ images }) => {
     const [showImagesZoom, setShowImagesZoom] = useState(false);
 

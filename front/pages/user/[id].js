@@ -12,17 +12,18 @@ import PostCard from '../../components/PostCard';
 import wrapper from '../../store/configureStore';
 import AppLayout from '../../components/AppLayout';
 
+
 const User = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { id } = router.query;
-    const { mainPosts, hasMorePosts, loadUserPostsLoading } = useSelector((state) => state.post);
+    const { mainPosts, hasMorePosts, loadPostsLoading } = useSelector((state) => state.post);
     const { userInfo } = useSelector((state) => state.user);
 
     useEffect(() => {
         const onScroll = () => {
-            if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
-                if (hasMorePosts && !loadUserPostsLoading) {
+            if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 400) {
+                if (hasMorePosts && !loadPostsLoading) {
                     dispatch({
                         type: LOAD_USER_POSTS_REQUEST,
                         lastId: mainPosts[mainPosts.length - 1] && mainPosts[mainPosts.length - 1].id,
@@ -35,17 +36,20 @@ const User = () => {
         return () => {
             window.removeEventListener('scroll', onScroll);
         };
-    }, [mainPosts.length, hasMorePosts, id]);
+    }, [mainPosts.length, hasMorePosts, id, loadPostsLoading]);
 
     return (
         <AppLayout>
             <Head>
                 <title>
-                    {userInfo.nickname}\'s post
+                    {userInfo.nickname}
+                    's post
                 </title>
-                <meta name="description" content={`${userInfo.nickname}\'s post`} />
-                <meta property="og:title" content={`${userInfo.nickname}\'s post`} />
-                <meta property="og:description" content={`${userInfo.nickname}\'s post`} />
+                <meta name="description" content={`${userInfo.nickname}'s post`} />
+                <meta property="og:title" content={`${userInfo.nickname}'s post`} />
+                <meta property="og:description" content={`${userInfo.nickname}'s post`} />
+                <meta property="og:image" content="https://renotter.com/favicon.ico" />
+                <meta property="og:url" content={`https://renotter.com/user/${id}`} />
             </Head>
             {userInfo
                 ? (
@@ -85,6 +89,7 @@ const User = () => {
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = '';
+
     if (context.req && cookie) {
         axios.defaults.headers.Cookie = cookie;
     }
@@ -101,7 +106,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     });
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
-    console.log('getState', context.store.getState().post.mainPosts);
+
     return { props: {} };
 });
 

@@ -16,12 +16,12 @@ import wrapper from '../store/configureStore';
 const fetcher = (url) => axios.get(url, { withCredentials: true }).then((result) => result.data);
 
 const Profile = () => {
+    const { me } = useSelector((state) => state.user);
     const [followersLimit, setFollowersLimit] = useState(3);
     const [followingsLimit, setFollowingsLimit] = useState(3);
+
     const { data: followersData, error: followerError } = useSWR(`http://localhost:3044/user/followers?limit=${followersLimit}`, fetcher);
     const { data: followingsData, error: followingError } = useSWR(`http://localhost:3044/user/followings?limit=${followingsLimit}`, fetcher);
-
-    const { me } = useSelector((state) => state.user);
 
     useEffect(() => {
         if (!(me && me.id)) {
@@ -37,7 +37,7 @@ const Profile = () => {
     }, []);
 
     if (followerError || followingError) {                                  // Hooks must run normally every time they render.
-        console.error(followerError || followingError);
+        // console.error(followerError || followingError);
         return <div>Follower/Following error occurred while loading.</div>;
     }
 
@@ -61,7 +61,7 @@ const Profile = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
     console.log('getServerSideProps start');
-    console.log(context.req.headers);
+    // console.log(context.req.headers);
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = '';
     if (context.req && cookie) {
